@@ -1,4 +1,6 @@
 import requests
+import re
+from datetime import datetime
 
 key = "QNBSQ569PDAHAV41"
 print("Stock Data Visualizer")
@@ -41,6 +43,39 @@ def get_Time():
         print(" ")
         get_Time()
 
+def get_Start():
+    global start_date
+    while True:
+        print("Please input the start date of the data you'd like. (YYYY-MM-DD)")
+        user_start = input("Enter Date: ")
+    
+        date_pattern = r'^\d{4}-\d{2}-\d{2}$'
+
+        if(re.match(date_pattern, user_start)):
+            start_date = user_start
+            break
+        else:
+            print("Invalid date, please use YYYY-MM-DD format.")
+
+def get_End():
+    global end_date
+    while True:
+        print("Please input the start date of the data you'd like. (YYYY-MM-DD)")
+        user_end = input("Enter Date: ")
+    
+        date_pattern = r'^\d{4}-\d{2}-\d{2}$'
+
+        if(re.match(date_pattern, user_end)):
+                date1_obj = datetime.strptime(start_date, "%Y-%m-%d")
+                date2_obj = datetime.strptime(user_end, "%Y-%m-%d")
+            if(date1_obj <= date2_obj):
+                end_date = user_end
+                break
+            else:
+                print("End date must come after the start date.")
+        else:
+            print("Invalid date, please use YYYY-MM-DD format.")
+        
 
 
 
@@ -48,6 +83,8 @@ def get_Time():
 def main():
     get_Symbol()
     get_Time()
+    get_Start()
+    get_End()
     getData()
 
 
