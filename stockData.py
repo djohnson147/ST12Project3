@@ -66,15 +66,15 @@ def get_End():
         date_pattern = r'^\d{4}-\d{2}-\d{2}$'
 
         if(re.match(date_pattern, user_end)):
-                date1_obj = datetime.strptime(start_date, "%Y-%m-%d")
-                date2_obj = datetime.strptime(user_end, "%Y-%m-%d")
-            if(date1_obj <= date2_obj):
-                end_date = user_end
-                break
-            else:
-                print("End date must come after the start date.")
+            date1_obj = datetime.strptime(start_date, "%Y-%m-%d")
+            date2_obj = datetime.strptime(user_end, "%Y-%m-%d")
+        if(date1_obj <= date2_obj):
+            end_date = user_end
+            break
         else:
-            print("Invalid date, please use YYYY-MM-DD format.")
+                print("End date must come after the start date.")
+    else:
+        print("Invalid date, please use YYYY-MM-DD format.")
         
 
 
